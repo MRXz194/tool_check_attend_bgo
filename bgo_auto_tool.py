@@ -54,8 +54,8 @@ class StudentAttendanceChecker:
         # All hs entry
         all_students_frame = ttk.LabelFrame(main_frame, text="Tất cả học sinh", padding="5")
         all_students_frame.pack(fill=tk.X, pady=5)
-        ttk.Label(all_students_frame, text="Nhập mã học sinh (phân cách bằng dấu phẩy, nen nhap 4 so)(EX:0053,0012,...):").pack(pady=2)
-        self.student_ids_entry = ttk.Entry(all_students_frame, width=50),
+        ttk.Label(all_students_frame, text="Nhập mã học sinh (phân cách bằng dấu phẩy, nên nhập 4 số)(EX:0053,0012,...):").pack(pady=2)
+        self.student_ids_entry = ttk.Entry(all_students_frame, width=50)
         self.student_ids_entry.pack(pady=2)
         
         # button
