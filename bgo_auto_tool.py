@@ -157,13 +157,15 @@ class StudentAttendanceChecker:
                 )))
                 find.clear()
                 find.send_keys(student_id)
-                time.sleep(2)
                 
-                # Check if student exists (look row)
+                # Check if student exists (look row) - Optimized fix 
                 try:
-                    self.wait.until(EC.presence_of_element_located((
-                        By.XPATH, "//div[@role='row' and contains(@class, 'ag-row')]"
-                    )))
+                    #  shorter timeout and  specific XPath optimize tuyet voi luon
+                    WebDriverWait(self.driver, 0.5).until(
+                        EC.presence_of_element_located((
+                            By.XPATH, "//div[@role='row' and contains(@class, 'ag-row') and not(contains(@class, 'ag-row-header'))]"
+                        ))
+                    )
                 except TimeoutException:
                     raise Exception("Không tìm thấy học sinh trong danh sách")
                 
