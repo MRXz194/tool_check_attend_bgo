@@ -10,10 +10,35 @@ import time
 
 class StudentAttendanceChecker:
     def __init__(self):
-        self.setup_gui()
         self.driver = None
         self.online_students = set()  # store onl id
         self.failed_students = []  # Store fail student id and their erors
+        self.initialize_browser()  # Start browser 
+        self.setup_gui()
+        
+    def initialize_browser(self):
+        try:
+            chrome_options = Options()
+            chrome_options.add_argument('--start-maximized')
+            self.driver = webdriver.Chrome(options=chrome_options)
+            self.wait = WebDriverWait(self.driver, 20)
+            
+            # Open BGO web
+            self.driver.get('http://quanly.bgo.edu.vn/')
+            self.driver.execute_script("document.body.style.zoom='67%'")
+            
+            # message box
+            messagebox.showinfo(
+                "Hướng dẫn", 
+                "Vui lòng đăng nhập và chọn buổi học trên trình duyệt.\n"
+                "Sau đó quay lại tool và nhập danh sách học sinh để điểm danh."
+            )
+            
+        except Exception as e:
+            messagebox.showerror("Lỗi", f"Không thể khởi động trình duyệt: {str(e)}")
+            if self.driver:
+                self.driver.quit()
+            self.driver = None
         
     def setup_gui(self):
         self.root = tk.Tk()
@@ -104,7 +129,7 @@ class StudentAttendanceChecker:
         if not student_ids:
             messagebox.showerror("Lỗi", "Vui lòng nhập ít nhất một mã học sinh")
             return
-        
+            
         # Get online hs id
         online_ids = self.online_ids_entry.get().strip()
         self.online_students = set(id.strip() for id in online_ids.split(',') if id.strip())
@@ -114,17 +139,12 @@ class StudentAttendanceChecker:
         self.root.update()
         
         try:
+            # Check if browser is still running
             if not self.driver:
-                chrome_options = Options()
-                chrome_options.add_argument('--start-maximized')
-                self.driver = webdriver.Chrome(options=chrome_options)
-                self.wait = WebDriverWait(self.driver, 20)
+                self.initialize_browser()
+                if not self.driver:  # If initialization failed
+                    return
                 
-                
-                self.driver.get('http://quanly.bgo.edu.vn/')
-                time.sleep(60)  # time load
-                self.driver.execute_script("document.body.style.zoom='67%'")
-            
             self.process_with_selenium(student_list)
             
             if self.failed_students:
