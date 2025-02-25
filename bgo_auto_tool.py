@@ -7,14 +7,19 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import tkinter as tk
 from tkinter import ttk, messagebox
 import time
+import threading
 
 class StudentAttendanceChecker:
     def __init__(self):
         self.driver = None
         self.online_students = set()  # store onl id
         self.failed_students = []  # Store fail student id and their erors
-        self.initialize_browser()  # Start browser 
-        self.setup_gui()
+        self.wait = None
+        self.setup_gui()  # Setup GUI 
+        self.root.update()  # Force GUI update
+        
+        # Start browser in a separate thread
+        threading.Thread(target=self.initialize_browser, daemon=True).start()
         
     def initialize_browser(self):
         try:
@@ -23,19 +28,17 @@ class StudentAttendanceChecker:
             self.driver = webdriver.Chrome(options=chrome_options)
             self.wait = WebDriverWait(self.driver, 20)
             
-            # Open BGO web
+            # Open BGO website
             self.driver.get('http://quanly.bgo.edu.vn/')
             self.driver.execute_script("document.body.style.zoom='67%'")
             
-            # message box
-            messagebox.showinfo(
-                "Hướng dẫn", 
-                "Vui lòng đăng nhập và chọn buổi học trên trình duyệt.\n"
-                "Sau đó quay lại tool và nhập danh sách học sinh để điểm danh."
-            )
+           
             
         except Exception as e:
-            messagebox.showerror("Lỗi", f"Không thể khởi động trình duyệt: {str(e)}")
+            self.root.after(0, lambda: messagebox.showerror(
+                "Lỗi", 
+                f"Không thể khởi động trình duyệt: {str(e)}"
+            ))
             if self.driver:
                 self.driver.quit()
             self.driver = None
@@ -44,6 +47,10 @@ class StudentAttendanceChecker:
         self.root = tk.Tk()
         self.root.title("Student Attendance Checker")
         self.root.geometry("600x400")
+        
+        # Force window to stay on top initially
+        self.root.attributes('-topmost', True)
+        self.root.update()
         
         # Create notebook for tabs
         self.notebook = ttk.Notebook(self.root)
@@ -67,7 +74,7 @@ class StudentAttendanceChecker:
         ttk.Label(lesson_frame, text="Loại tiết học:").pack(side=tk.LEFT, padx=5)
         self.lesson_type = tk.StringVar(value="theory")
         ttk.Radiobutton(lesson_frame, text="Lý thuyết", variable=self.lesson_type, value="theory").pack(side=tk.LEFT, padx=5)
-        ttk.Radiobutton(lesson_frame, text="Luyện bài", variable=self.lesson_type, value="practice").pack(side=tk.LEFT, padx=5)
+        ttk.Radiobutton(lesson_frame, text="Luyện đề", variable=self.lesson_type, value="practice").pack(side=tk.LEFT, padx=5)
         
         # hs onl entry
         online_frame = ttk.LabelFrame(main_frame, text="Học sinh học online", padding="5")
@@ -89,6 +96,9 @@ class StudentAttendanceChecker:
         # Status lab
         self.status_label = ttk.Label(main_frame, text="")
         self.status_label.pack(pady=5)
+        
+        # Remove topmost after 2 seconds
+        self.root.after(2000, lambda: self.root.attributes('-topmost', False))
         
     def setup_report_tab(self):
         
@@ -237,3 +247,8 @@ class StudentAttendanceChecker:
 if __name__ == "__main__":
     app = StudentAttendanceChecker()
     app.run()
+
+
+
+
+
