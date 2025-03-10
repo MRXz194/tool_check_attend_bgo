@@ -10,6 +10,7 @@ import time
 import threading
 
 class StudentAttendanceChecker:
+  
     def __init__(self):
         self.driver = None
         self.online_students = set()  # store onl id
@@ -75,6 +76,7 @@ class StudentAttendanceChecker:
         self.lesson_type = tk.StringVar(value="theory")
         ttk.Radiobutton(lesson_frame, text="Lý thuyết", variable=self.lesson_type, value="theory").pack(side=tk.LEFT, padx=5)
         ttk.Radiobutton(lesson_frame, text="Luyện đề", variable=self.lesson_type, value="practice").pack(side=tk.LEFT, padx=5)
+        ttk.Radiobutton(lesson_frame, text="Chữa đề", variable=self.lesson_type, value="review").pack(side=tk.LEFT, padx=5)
         
         # hs onl entry
         online_frame = ttk.LabelFrame(main_frame, text="Học sinh học online", padding="5")
@@ -86,7 +88,7 @@ class StudentAttendanceChecker:
         # All hs entry
         all_students_frame = ttk.LabelFrame(main_frame, text="Tất cả học sinh", padding="5")
         all_students_frame.pack(fill=tk.X, pady=5)
-        ttk.Label(all_students_frame, text="Nhập mã học sinh (phân cách bằng dấu phẩy, nên nhập 4 số)(EX:0053,0012,...):").pack(pady=2)
+        ttk.Label(all_students_frame, text="Nhập tất cả mã học sinh (nên nhập 4 số*neu id nhiều số 0*, 3 số)(EX:111,222,...").pack(pady=2)
         self.student_ids_entry = ttk.Entry(all_students_frame, width=50)
         self.student_ids_entry.pack(pady=2)
         
@@ -212,23 +214,27 @@ class StudentAttendanceChecker:
                     (By.XPATH, "//div[@col-id='4']")
                 ))[1]
                 select_2 = div_2.find_element(By.XPATH, '//select')
-                # value="2" onl, value="1"  offline
-                attendance_value = "2" if student_id in self.online_students else "1"
+                # For review sessions, everyone is online. Otherwise check online_students list
+                if self.lesson_type.get() == "review":
+                    attendance_value = "2"  # online for everyone
+                else:
+                    attendance_value = "2" if student_id in self.online_students else "1"
                 option_2 = select_2.find_elements(By.XPATH, f'//option[@value="{attendance_value}"]')[1]
                 option_2.click()
                 time.sleep(1)
                 
                 # set vo ghi dua tren lesson type
-                div_3 = self.wait.until(EC.presence_of_all_elements_located(
-                    (By.XPATH, "//div[@col-id='10']")
-                ))[1]
-                select_3 = div_3.find_element(By.XPATH, '//select')
-                
-                # value=1 xho ly thuyet, value=2 cho luyen de
-                notebook_value = "1" if self.lesson_type.get() == "theory" else "2"
-                option_3 = select_3.find_elements(By.XPATH, f'//option[@value="{notebook_value}"]')[-1]
-                option_3.click()
-                time.sleep(2)
+                if self.lesson_type.get() != "review":  # Skip notebook for review sessions
+                    div_3 = self.wait.until(EC.presence_of_all_elements_located(
+                        (By.XPATH, "//div[@col-id='10']")
+                    ))[1]
+                    select_3 = div_3.find_element(By.XPATH, '//select')
+                    
+                    # value=1 cho ly thuyet, value=2 cho luyen de
+                    notebook_value = "1" if self.lesson_type.get() == "theory" else "2"
+                    option_3 = select_3.find_elements(By.XPATH, f'//option[@value="{notebook_value}"]')[-1]
+                    option_3.click()
+                    time.sleep(2)
                 
             except Exception as e:
                 # Add failed student to list and continue 
@@ -247,8 +253,3 @@ class StudentAttendanceChecker:
 if __name__ == "__main__":
     app = StudentAttendanceChecker()
     app.run()
-
-
-
-
-
