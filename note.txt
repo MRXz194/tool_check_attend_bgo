@@ -1,0 +1,46 @@
+
+- update them cai chua de :( done)(tested without any error )
++ chỉ có đi đúng giờ 
++ không tick bất cứ cái gì ở phần vở ghi
++ kiểu đi học auto onliine 
++ còn lại sẽ là nghỉ có phép và không đi 
++ viết input là student id sau đó check đi đúng giờ và học online hết
+- cai thien lai co tool friendly hon 
+- update them multi thread diem danh song song nhieu tab nhieu lớp hơn để clear đc nếu làm ca luyện đề nhiều hsinh
+-set up lại mtrg code code đnahg bị 1 line khó nhìn :v 
+- done func trc tối 10/3
+- fix bug 
+
+
+
+- last update : pls test
+The code should now be more stable and ready for future updates. Here's how to test if everything is working:
+
+Try with invalid student IDs (letters, too short, too long)
+Test all three lesson types (theory, practice, review)
+Test with online and offline students
+Check the log file for any errors
+Make sure the browser closes properly when closing the application
+
+added things:
+Added Logging System:
+Added file and console logging
+Log file will be created as bgo_auto.log
+Logs important events, errors, and student processing status
+Improved Error Handling:
+Better Chrome driver initialization error handling
+Specific error message for Chrome not installed
+Better cleanup when errors occur
+Proper browser cleanup on application exit
+Added Student ID Validation:
+Checks if ID contains only numbers
+Validates ID length (2-6 digits)
+Shows specific error messages for invalid IDs
+Code Organization:
+Added proper comments and docstrings
+Improved code structure
+Added proper error messages in Vietnamese
+Browser Improvements:
+Suppressed unnecessary Chrome logs
+Better handling of browser cleanup
+Added proper wait times for better reliability

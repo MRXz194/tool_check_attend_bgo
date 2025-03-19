@@ -1,0 +1,134 @@
+2025-03-10 15:08:43,173 - INFO - Browser initialized successfully
+2025-03-10 15:08:44,463 - INFO - Shutting down application
+2025-03-19 10:38:54,324 - INFO - Browser initialized successfully
+2025-03-19 10:38:54,325 - INFO - Processing student: 0006
+2025-03-19 10:40:21,190 - INFO - Shutting down application
+2025-03-19 10:42:00,266 - INFO - Browser initialized successfully
+2025-03-19 10:42:00,267 - INFO - Processing student: 0005
+2025-03-19 10:43:18,199 - INFO - Shutting down application
+2025-03-19 10:43:27,456 - ERROR - Browser initialization failed: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EB8DFE45+26629]
+	(No symbol) [0x00007FF6EB846010]
+	(No symbol) [0x00007FF6EB6D931A]
+	(No symbol) [0x00007FF6EB6B1753]
+	(No symbol) [0x00007FF6EB75F6BE]
+	(No symbol) [0x00007FF6EB77FA55]
+	(No symbol) [0x00007FF6EB757883]
+	(No symbol) [0x00007FF6EB720550]
+	(No symbol) [0x00007FF6EB721803]
+	GetHandleVerifier [0x00007FF6EBC372BD+3529853]
+	GetHandleVerifier [0x00007FF6EBC4DA22+3621858]
+	GetHandleVerifier [0x00007FF6EBC424D3+3575443]
+	GetHandleVerifier [0x00007FF6EB9AB77A+860474]
+	(No symbol) [0x00007FF6EB85088F]
+	(No symbol) [0x00007FF6EB84CBC4]
+	(No symbol) [0x00007FF6EB84CD66]
+	(No symbol) [0x00007FF6EB83C2C9]
+	BaseThreadInitThunk [0x00007FF8F5EF269D+29]
+	RtlUserThreadStart [0x00007FF8F744A9F8+40]
+
+2025-03-19 10:43:30,969 - INFO - Shutting down application
+2025-03-19 10:52:46,386 - ERROR - Browser initialization failed: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EB8DFE45+26629]
+	(No symbol) [0x00007FF6EB846010]
+	(No symbol) [0x00007FF6EB6D931A]
+	(No symbol) [0x00007FF6EB6B1753]
+	(No symbol) [0x00007FF6EB75F6BE]
+	(No symbol) [0x00007FF6EB77FA55]
+	(No symbol) [0x00007FF6EB757883]
+	(No symbol) [0x00007FF6EB720550]
+	(No symbol) [0x00007FF6EB721803]
+	GetHandleVerifier [0x00007FF6EBC372BD+3529853]
+	GetHandleVerifier [0x00007FF6EBC4DA22+3621858]
+	GetHandleVerifier [0x00007FF6EBC424D3+3575443]
+	GetHandleVerifier [0x00007FF6EB9AB77A+860474]
+	(No symbol) [0x00007FF6EB85088F]
+	(No symbol) [0x00007FF6EB84CBC4]
+	(No symbol) [0x00007FF6EB84CD66]
+	(No symbol) [0x00007FF6EB83C2C9]
+	BaseThreadInitThunk [0x00007FF8F5EF269D+29]
+	RtlUserThreadStart [0x00007FF8F744A9F8+40]
+
+2025-03-19 11:02:40,741 - INFO - Shutting down application
+2025-03-19 11:04:23,520 - INFO - Browser initialized successfully
+2025-03-19 11:05:44,624 - INFO - Browser initialized successfully
+2025-03-19 11:31:37,331 - ERROR - Browser initialization failed: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EB8DFE45+26629]
+	(No symbol) [0x00007FF6EB846010]
+	(No symbol) [0x00007FF6EB6D931A]
+	(No symbol) [0x00007FF6EB6B1753]
+	(No symbol) [0x00007FF6EB75F6BE]
+	(No symbol) [0x00007FF6EB77FA55]
+	(No symbol) [0x00007FF6EB757883]
+	(No symbol) [0x00007FF6EB720550]
+	(No symbol) [0x00007FF6EB721803]
+	GetHandleVerifier [0x00007FF6EBC372BD+3529853]
+	GetHandleVerifier [0x00007FF6EBC4DA22+3621858]
+	GetHandleVerifier [0x00007FF6EBC424D3+3575443]
+	GetHandleVerifier [0x00007FF6EB9AB77A+860474]
+	(No symbol) [0x00007FF6EB85088F]
+	(No symbol) [0x00007FF6EB84CBC4]
+	(No symbol) [0x00007FF6EB84CD66]
+	(No symbol) [0x00007FF6EB83C2C9]
+	BaseThreadInitThunk [0x00007FF8F5EF269D+29]
+	RtlUserThreadStart [0x00007FF8F744A9F8+40]
+
+2025-03-19 11:42:05,404 - ERROR - Browser initialization failed: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EB8DFE45+26629]
+	(No symbol) [0x00007FF6EB846010]
+	(No symbol) [0x00007FF6EB6D931A]
+	(No symbol) [0x00007FF6EB6B1753]
+	(No symbol) [0x00007FF6EB75F6BE]
+	(No symbol) [0x00007FF6EB77FA55]
+	(No symbol) [0x00007FF6EB757883]
+	(No symbol) [0x00007FF6EB720550]
+	(No symbol) [0x00007FF6EB721803]
+	GetHandleVerifier [0x00007FF6EBC372BD+3529853]
+	GetHandleVerifier [0x00007FF6EBC4DA22+3621858]
+	GetHandleVerifier [0x00007FF6EBC424D3+3575443]
+	GetHandleVerifier [0x00007FF6EB9AB77A+860474]
+	(No symbol) [0x00007FF6EB85088F]
+	(No symbol) [0x00007FF6EB84CBC4]
+	(No symbol) [0x00007FF6EB84CD66]
+	(No symbol) [0x00007FF6EB83C2C9]
+	BaseThreadInitThunk [0x00007FF8F5EF269D+29]
+	RtlUserThreadStart [0x00007FF8F744A9F8+40]
+
+2025-03-19 11:42:17,410 - INFO - Shutting down application
+2025-03-19 12:15:11,357 - INFO - Shutting down application
+2025-03-19 12:15:13,293 - INFO - Shutting down application
+2025-03-19 12:16:27,299 - INFO - Processing student: 0053
+2025-03-19 12:16:53,850 - INFO - Browser initialized successfully
+2025-03-19 12:16:53,851 - INFO - Processing student: 0053
+2025-03-19 12:19:54,624 - INFO - Shutting down application
+2025-03-19 12:21:13,010 - INFO - Processing student: 0053
+2025-03-19 12:21:37,570 - INFO - Processing student: 0053
+2025-03-19 12:24:43,163 - INFO - Processing student: 0053
+2025-03-19 12:24:43,163 - INFO - Processing student: 0166
+2025-03-19 12:26:37,576 - INFO - Processing student: 0166
+2025-03-19 12:29:58,096 - INFO - Processing student: 0166
+2025-03-19 12:32:42,539 - INFO - Processing student: 0001
+2025-03-19 12:33:27,248 - INFO - Processing student: 0053
+2025-03-19 12:33:27,248 - INFO - Processing student: 0001
+2025-03-19 12:35:09,852 - INFO - Processing student: 0053
+2025-03-19 12:35:14,054 - INFO - Processing student: 0001
+2025-03-19 12:35:14,681 - INFO - Processing student: 0083
+2025-03-19 12:36:15,156 - INFO - Processing student: 0053
+2025-03-19 12:36:15,156 - INFO - Processing student: 0001
+2025-03-19 12:36:15,768 - INFO - Processing student: 0108
+2025-03-19 12:36:19,444 - INFO - Processing student: 0001
+2025-03-19 12:36:20,071 - INFO - Processing student: 0005
+2025-03-19 12:36:20,079 - INFO - Processing student: 0083
+2025-03-19 12:36:20,707 - INFO - Processing student: 0009
