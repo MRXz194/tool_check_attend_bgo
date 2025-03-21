@@ -1,17 +1,12 @@
 
-- update them cai chua de :( done)(tested without any error )
-+ chỉ có đi đúng giờ 
-+ không tick bất cứ cái gì ở phần vở ghi
-+ kiểu đi học auto onliine 
-+ còn lại sẽ là nghỉ có phép và không đi 
-+ viết input là student id sau đó check đi đúng giờ và học online hết
-- cai thien lai co tool friendly hon 
+- cai thien lai co tool friendly hon (front end)
 - update them multi thread diem danh song song nhieu tab nhieu lớp hơn để clear đc nếu làm ca luyện đề nhiều hsinh
 update multi thread : 
-+ test with check multipler student is ok ( cả 2 ở tất cả lẫn single thread)
 + thread chạy song song 2 lớp ok 
-+ báo cáo lỗi chia ra các lớp (chưa làm )
-+ thêm log để debugg 
-+ thay đổi ngay cái chỗ điền id học sinh cho dễ nhìn 
++ báo cáo lỗi chia ra các lớp (done )
++ thêm log để debugg ( chưa làm)
++ thay đổi ngay cái chỗ điền id học sinh cho dễ nhìn ( chưa update liên quan đến front end)
 + check refresh xong còn tương tác điểm danh đc không ( khả lăng lỗi)
++ rename func ( chưa có )
 - selenium có phải cách duy nhất tối ưu để làm ko??
+- them auto dien diem btvn ( kinda big update ) ( later)

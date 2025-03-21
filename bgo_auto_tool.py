@@ -367,51 +367,28 @@ class StudentAttendanceChecker:
                     worker.wait = WebDriverWait(config['browser'], 20)
                 
                 future = executor.submit(worker.process_class)
-                futures.append((future, config['status_label']))
+                futures.append((future, config['status_label'], config['tab_id']))
                 
             # Wait for all tasks to complete
-            for future, status_label in futures:
+            for future, status_label, tab_id in futures:
                 try:
                     failed_students = future.result()
-                    all_failed_students.extend(failed_students)
                     if failed_students:
+                        # Add class information to each failed student
+                        class_failed_students = [(student_id, error, tab_id) for student_id, error in failed_students]
+                        all_failed_students.extend(class_failed_students)
                         status_label.config(text=f"Hoàn thành! Có {len(failed_students)} học sinh bị lỗi.")
                     else:
                         status_label.config(text="Hoàn thành điểm danh!")
                 except Exception as e:
                     logging.error(f"Error in worker thread: {str(e)}")
                     status_label.config(text="Lỗi rùi huhu")
+                    all_failed_students.append((None, str(e), tab_id))
                     
         # Update report
         self.update_report(all_failed_students)
         if all_failed_students:
             self.notebook.select(self.report_frame)
-
-    def open_browser_for_tab(self, tab_id):
-        if tab_id in self.tab_browsers:
-            try:
-                # Check if browser is still responsive
-                self.tab_browsers[tab_id].current_url
-                messagebox.showinfo("Thông báo", "Trình duyệt đã được mở cho lớp này rồi!")
-                return
-            except:
-                # Browser was closed, remove it from our tracking
-                self.tab_browsers.pop(tab_id)
-
-        def open_browser_thread():
-            try:
-                chrome_options = Options()
-                chrome_options.add_argument('--start-maximized')
-                chrome_options.add_argument('--log-level=3')
-                driver = webdriver.Chrome(options=chrome_options)
-                self.tab_browsers[tab_id] = driver
-                driver.get('http://quanly.bgo.edu.vn/')
-                driver.execute_script("document.body.style.zoom='67%'")
-                self.root.after(0, lambda: messagebox.showinfo("Thành công", "Đã mở trình duyệt. Vui lòng điều hướng đến trang điểm danh."))
-            except Exception as e:
-                self.root.after(0, lambda: messagebox.showerror("Lỗi", f"Không thể mở trình duyệt: {str(e)}"))
-
-        threading.Thread(target=open_browser_thread, daemon=True).start()
 
     def process_single_class(self, tab_id):
         tab = next((tab for tab in self.class_tabs if tab['id'] == tab_id), None)
@@ -450,14 +427,44 @@ class StudentAttendanceChecker:
         try:
             failed_students = worker.process_class()
             if failed_students:
+                # Add class information to each failed student
+                class_failed_students = [(student_id, error, tab_id) for student_id, error in failed_students]
                 tab['status_label'].config(text=f"Hoàn thành! Có {len(failed_students)} học sinh bị lỗi.")
-                self.update_report(failed_students)
+                self.update_report(class_failed_students)
                 self.notebook.select(self.report_frame)
             else:
                 tab['status_label'].config(text="Hoàn thành điểm danh!")
         except Exception as e:
             logging.error(f"Error processing class: {str(e)}")
             tab['status_label'].config(text="Lỗi rùi huhu")
+            self.update_report([(None, str(e), tab_id)])
+            self.notebook.select(self.report_frame)
+
+    def open_browser_for_tab(self, tab_id):
+        if tab_id in self.tab_browsers:
+            try:
+                # Check if browser is still responsive
+                self.tab_browsers[tab_id].current_url
+                messagebox.showinfo("Thông báo", "Trình duyệt đã được mở cho lớp này rồi!")
+                return
+            except:
+                # Browser was closed, remove it from our tracking
+                self.tab_browsers.pop(tab_id)
+
+        def open_browser_thread():
+            try:
+                chrome_options = Options()
+                chrome_options.add_argument('--start-maximized')
+                chrome_options.add_argument('--log-level=3')
+                driver = webdriver.Chrome(options=chrome_options)
+                self.tab_browsers[tab_id] = driver
+                driver.get('http://quanly.bgo.edu.vn/')
+                driver.execute_script("document.body.style.zoom='67%'")
+                self.root.after(0, lambda: messagebox.showinfo("Thành công", "Đã mở trình duyệt. Vui lòng điều hướng đến trang điểm danh."))
+            except Exception as e:
+                self.root.after(0, lambda: messagebox.showerror("Lỗi", f"Không thể mở trình duyệt: {str(e)}"))
+
+        threading.Thread(target=open_browser_thread, daemon=True).start()
 
     def update_report(self, failed_students=None):
         self.report_text.config(state=tk.NORMAL)
@@ -467,14 +474,25 @@ class StudentAttendanceChecker:
             self.report_text.insert(tk.END, "Không có học sinh nào bị lỗi trong lần chạy gần nhất.")
         else:
             self.report_text.insert(tk.END, "Danh sách học sinh bị lỗi:\n\n")
-            for student_id, error in failed_students:
-                if student_id:  # Skip browser initialization errors
-                    self.report_text.insert(tk.END, f"Mã học sinh: {student_id}\n")
-                    self.report_text.insert(tk.END, f"Lỗi: {error}\n")
-                    self.report_text.insert(tk.END, "-" * 50 + "\n")
-                else:
-                    self.report_text.insert(tk.END, f"Lỗi khởi tạo: {error}\n")
-                    self.report_text.insert(tk.END, "-" * 50 + "\n")
+            # Group errors by class
+            errors_by_class = {}
+            for student_id, error, class_id in failed_students:
+                if class_id not in errors_by_class:
+                    errors_by_class[class_id] = []
+                errors_by_class[class_id].append((student_id, error))
+            
+            # Display errors grouped by class
+            for class_id in sorted(errors_by_class.keys()):
+                self.report_text.insert(tk.END, f"=== Lớp {class_id} ===\n\n")
+                for student_id, error in errors_by_class[class_id]:
+                    if student_id:  # Skip browser initialization errors
+                        self.report_text.insert(tk.END, f"Mã học sinh: {student_id}\n")
+                        self.report_text.insert(tk.END, f"Lỗi: {error}\n")
+                        self.report_text.insert(tk.END, "-" * 50 + "\n")
+                    else:
+                        self.report_text.insert(tk.END, f"Lỗi khởi tạo: {error}\n")
+                        self.report_text.insert(tk.END, "-" * 50 + "\n")
+                self.report_text.insert(tk.END, "\n")
         
         self.report_text.config(state=tk.DISABLED)
 
