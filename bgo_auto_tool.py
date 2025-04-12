@@ -141,7 +141,7 @@ class StudentAttendanceChecker:
     def setup_gui(self):
         self.root = tk.Tk()
         self.root.title("Student Attendance Checker")
-        self.root.geometry("800x600")
+        self.root.geometry("1000x700")
         
         self.root.attributes('-topmost', True)
         self.root.update()
@@ -223,12 +223,264 @@ class StudentAttendanceChecker:
         online_ids_entry = ttk.Entry(online_frame, width=50)
         online_ids_entry.pack(pady=2)
         
-        # All students entry
-        all_students_frame = ttk.LabelFrame(class_frame, text="Tất cả học sinh", padding="5")
-        all_students_frame.pack(fill=tk.X, pady=5)
-        ttk.Label(all_students_frame, text="Nhập tất cả mã học sinh (nên nhập 4 số*neu id nhiều số 0*, 3 số)(EX:111,222,...").pack(pady=2)
-        student_ids_entry = ttk.Entry(all_students_frame, width=50)
-        student_ids_entry.pack(pady=2)
+        # All students entry - improved interface
+        all_students_frame = ttk.LabelFrame(class_frame, text="Tất cả học sinh", padding="10")
+        all_students_frame.pack(fill=tk.BOTH, expand=True, pady=5)
+        
+        entry_frame = ttk.Frame(all_students_frame)
+        entry_frame.pack(fill=tk.X, pady=5)
+        
+        ttk.Label(entry_frame, text="Nhập mã học sinh:", width=15).pack(side=tk.LEFT, padx=5)
+        student_id_var = tk.StringVar()
+        student_id_entry = ttk.Entry(entry_frame, textvariable=student_id_var, width=20, font=('Arial', 12))
+        student_id_entry.pack(side=tk.LEFT, padx=5)
+        
+        # Enter key binding to add ID
+        student_id_entry.bind("<Return>", lambda e: add_id())
+        
+        # ID status label for showing validation errors
+        id_status_var = tk.StringVar()
+        id_status_label = ttk.Label(entry_frame, textvariable=id_status_var, foreground="red", font=('Arial', 10))
+        id_status_label.pack(side=tk.LEFT, padx=5)
+        
+        # List to display all entered IDs
+        list_frame = ttk.Frame(all_students_frame)
+        list_frame.pack(fill=tk.BOTH, expand=True, pady=5)
+        
+        # Student ID list display with scrollbar
+        list_container = ttk.Frame(list_frame)
+        list_container.pack(fill=tk.BOTH, expand=True, side=tk.LEFT)
+        
+        ttk.Label(list_container, text="Danh sách mã học sinh đã nhập:", font=('Arial', 10, 'bold')).pack(anchor=tk.W)
+        
+        id_listbox = tk.Listbox(list_container, height=10, width=25, font=('Arial', 12))
+        id_scrollbar = ttk.Scrollbar(list_container, orient="vertical", command=id_listbox.yview)
+        id_listbox.configure(yscrollcommand=id_scrollbar.set)
+        id_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, pady=5)
+        id_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        
+        # Stats display
+        stats_frame = ttk.Frame(list_frame)
+        stats_frame.pack(fill=tk.Y, side=tk.RIGHT, padx=15)
+        
+        ttk.Label(stats_frame, text="Thống kê:", font=('Arial', 10, 'bold')).pack(anchor=tk.W, pady=(0, 5))
+        
+        # Create variables for statistics
+        total_count_var = tk.StringVar(value="Tổng số ID: 0")
+        digits_3_count_var = tk.StringVar(value="ID 3 chữ số: 0")
+        digits_4_count_var = tk.StringVar(value="ID 4 chữ số: 0")
+        digits_other_count_var = tk.StringVar(value="ID khác: 0")
+        
+        # Create labels for statistics
+        ttk.Label(stats_frame, textvariable=total_count_var, font=('Arial', 10)).pack(anchor=tk.W, pady=2)
+        ttk.Label(stats_frame, textvariable=digits_3_count_var, font=('Arial', 10)).pack(anchor=tk.W, pady=2)
+        ttk.Label(stats_frame, textvariable=digits_4_count_var, font=('Arial', 10)).pack(anchor=tk.W, pady=2)
+        ttk.Label(stats_frame, textvariable=digits_other_count_var, font=('Arial', 10)).pack(anchor=tk.W, pady=2)
+        
+        # Function to update statistics
+        def update_stats():
+            all_ids = list(id_listbox.get(0, tk.END))
+            total = len(all_ids)
+            
+            # Count by length
+            digits_3 = sum(1 for id in all_ids if len(id) == 3)
+            digits_4 = sum(1 for id in all_ids if len(id) == 4)
+            digits_other = total - digits_3 - digits_4
+            
+            # Update variables
+            total_count_var.set(f"Tổng số ID: {total}")
+            digits_3_count_var.set(f"ID 3 chữ số: {digits_3}")
+            digits_4_count_var.set(f"ID 4 chữ số: {digits_4}")
+            digits_other_count_var.set(f"ID khác: {digits_other}")
+        
+        # Buttons for ID management
+        button_frame = ttk.Frame(all_students_frame)
+        button_frame.pack(fill=tk.X, pady=10)
+        
+        # Function to add an ID
+        def add_id():
+            input_text = student_id_var.get().strip()
+            if not input_text:
+                id_status_var.set("ID không được để trống")
+                return
+                
+            # Check if the input contains commas - multiple IDs
+            if ',' in input_text:
+                ids = [id.strip() for id in input_text.split(',') if id.strip()]
+                
+                # Validate and process each ID
+                valid_ids = []
+                invalid_ids = []
+                duplicate_ids = []
+                
+                current_ids = list(id_listbox.get(0, tk.END))
+                
+                for student_id in ids:
+                    is_valid, error_msg = self.validate_student_id(student_id)
+                    if not is_valid:
+                        invalid_ids.append(student_id)
+                    elif student_id in current_ids:
+                        duplicate_ids.append(student_id)
+                    else:
+                        valid_ids.append(student_id)
+                        current_ids.append(student_id)  # Add to current to check duplicates
+                
+                # Add to listbox
+                for id in valid_ids:
+                    id_listbox.insert(tk.END, id)
+                
+                # Update statistics
+                update_stats()
+                
+                # Show report on what happened
+                msg = []
+                if valid_ids:
+                    msg.append(f"Đã thêm {len(valid_ids)} ID")
+                if invalid_ids:
+                    msg.append(f"{len(invalid_ids)} ID không hợp lệ")
+                if duplicate_ids:
+                    msg.append(f"{len(duplicate_ids)} ID trùng lặp")
+                
+                id_status_var.set(" - ".join(msg))
+                student_id_var.set("")  # Clear entry
+                student_id_entry.focus()  # Keep focus on entry field
+                return
+                
+            # Single ID processing
+            student_id = input_text
+            is_valid, error_msg = self.validate_student_id(student_id)
+            if not is_valid:
+                id_status_var.set(error_msg)
+                return
+                
+            # Check if ID already exists in the list
+            current_ids = list(id_listbox.get(0, tk.END))
+            if student_id in current_ids:
+                id_status_var.set("ID này đã tồn tại trong danh sách!")
+                return
+                
+            id_listbox.insert(tk.END, student_id)
+            student_id_var.set("")  # Clear entry
+            id_status_var.set("Đã thêm 1 ID")  # Clear error message
+            student_id_entry.focus()  # Keep focus on entry field for fast input
+            
+            # Update statistics
+            update_stats()
+            
+        # Function to remove selected ID
+        def remove_id():
+            selected = id_listbox.curselection()
+            if not selected:
+                id_status_var.set("Vui lòng chọn ID để xóa")
+                return
+                
+            id_listbox.delete(selected)
+            id_status_var.set("")
+            student_id_entry.focus()  # Return focus to entry field
+            
+            # Update statistics
+            update_stats()
+            
+        # Add ID button
+        add_btn = ttk.Button(button_frame, text="Thêm ID", command=add_id, width=15)
+        add_btn.pack(side=tk.LEFT, padx=5)
+        
+        # Remove ID button
+        remove_btn = ttk.Button(button_frame, text="Xóa ID đã chọn", command=remove_id, width=15)
+        remove_btn.pack(side=tk.LEFT, padx=5)
+        
+        # Clear all button
+        def clear_all():
+            id_listbox.delete(0, tk.END)
+            id_status_var.set("")
+            student_id_entry.focus()
+            
+            # Update statistics
+            update_stats()
+            
+        clear_btn = ttk.Button(button_frame, text="Xóa tất cả", command=clear_all, width=15)
+        clear_btn.pack(side=tk.LEFT, padx=5)
+        
+        # Create a hidden entry field to store the comma-separated list for compatibility
+        student_ids_entry = ttk.Entry(all_students_frame)
+        student_ids_entry.pack_forget()  # Hide this widget
+        
+        # Update the hidden entry when needed for compatibility with existing code
+        def update_hidden_entry():
+            all_ids = list(id_listbox.get(0, tk.END))
+            student_ids_entry.delete(0, tk.END)
+            student_ids_entry.insert(0, ",".join(all_ids))
+            
+        # Bind events to update hidden entry
+        id_listbox.bind('<<ListboxSelect>>', lambda e: update_hidden_entry())
+        
+        # Override the process_single_class to update the hidden entry first
+        original_process = self.process_single_class
+        def wrapped_process(tab_id):
+            update_hidden_entry()
+            original_process(tab_id)
+        self.process_single_class = wrapped_process
+        
+        # Load existing IDs if available (paste them to the listbox)
+        def load_ids_from_clipboard():
+            try:
+                clipboard = self.root.clipboard_get()
+                ids = [id.strip() for id in clipboard.split(',') if id.strip()]
+                
+                # Validate each ID
+                valid_ids = []
+                invalid_ids = []
+                duplicate_ids = []
+                
+                current_ids = list(id_listbox.get(0, tk.END))
+                
+                for student_id in ids:
+                    is_valid, _ = self.validate_student_id(student_id)
+                    if not is_valid:
+                        invalid_ids.append(student_id)
+                    elif student_id in current_ids:
+                        duplicate_ids.append(student_id)
+                    else:
+                        valid_ids.append(student_id)
+                        current_ids.append(student_id)  # Add to current to check duplicates
+                
+                # Add to listbox
+                for id in valid_ids:
+                    id_listbox.insert(tk.END, id)
+                
+                # Update hidden entry
+                update_hidden_entry()
+                
+                # Update statistics
+                update_stats()
+                
+                # Show report on what happened
+                msg = []
+                if valid_ids:
+                    msg.append(f"Đã nạp {len(valid_ids)} ID")
+                if invalid_ids:
+                    msg.append(f"{len(invalid_ids)} ID không hợp lệ")
+                if duplicate_ids:
+                    msg.append(f"{len(duplicate_ids)} ID trùng lặp")
+                
+                id_status_var.set(" - ".join(msg))
+                student_id_entry.focus()
+            except Exception as e:
+                id_status_var.set("Không thể nạp từ clipboard")
+                logging.error(f"Error loading from clipboard: {str(e)}")
+        
+        paste_btn = ttk.Button(button_frame, text="Nạp từ clipboard", command=load_ids_from_clipboard, width=15)
+        paste_btn.pack(side=tk.LEFT, padx=5)
+        
+        # Override the process_all_classes to update all hidden entries first
+        original_process_all = self.process_all_classes
+        def wrapped_process_all():
+            for tab in self.class_tabs:
+                all_ids = list(tab['id_listbox'].get(0, tk.END))
+                tab['student_ids_entry'].delete(0, tk.END)
+                tab['student_ids_entry'].insert(0, ",".join(all_ids))
+            original_process_all()
+        self.process_all_classes = wrapped_process_all
         
         # Status label
         status_label = ttk.Label(class_frame, text="")
@@ -240,6 +492,7 @@ class StudentAttendanceChecker:
             'lesson_type': lesson_type,
             'online_ids_entry': online_ids_entry,
             'student_ids_entry': student_ids_entry,
+            'id_listbox': id_listbox,
             'status_label': status_label
         }
 
@@ -296,6 +549,16 @@ class StudentAttendanceChecker:
             return False, "Độ dài mã học sinh không hợp lệ"
         return True, ""
 
+    def check_for_duplicates(self, id_list):
+        seen = set()
+        duplicates = []
+        for id in id_list:
+            if id in seen:
+                duplicates.append(id)
+            else:
+                seen.add(id)
+        return duplicates
+
     def validate_class_input(self, student_ids):
         if not student_ids:
             return False, "Vui lòng nhập ít nhất một mã học sinh"
@@ -307,6 +570,11 @@ class StudentAttendanceChecker:
             if not is_valid:
                 return False, f"Mã học sinh không hợp lệ '{student_id}': {error_msg}"
             student_list.append(student_id)
+        
+        # Check for duplicates
+        duplicates = self.check_for_duplicates(student_list)
+        if duplicates:
+            return False, f"Có ID trùng lặp: {', '.join(duplicates)}"
             
         return True, student_list
 

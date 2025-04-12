@@ -1,12 +1,14 @@
-
-- cai thien lai co tool friendly hon (front end)
+- cai thien lai co tool friendly hon (front end) ( de sau)
 - update them multi thread diem danh song song nhieu tab nhieu lớp hơn để clear đc nếu làm ca luyện đề nhiều hsinh
 update multi thread : 
-+ thread chạy song song 2 lớp ok 
++ thread chạy song song 2 lớp (ok) 
 + báo cáo lỗi chia ra các lớp (done )
-+ thêm log để debugg ( chưa làm)
-+ thay đổi ngay cái chỗ điền id học sinh cho dễ nhìn ( chưa update liên quan đến front end)
++ thêm log để debugg ( chưa làm) 
++ thay đổi ngay cái chỗ điền id học sinh cho dễ nhìn ( chưa update liên quan 
 + check refresh xong còn tương tác điểm danh đc không ( khả lăng lỗi)
 + rename func ( chưa có )
 - selenium có phải cách duy nhất tối ưu để làm ko??
-- them auto dien diem btvn ( kinda big update ) ( later)
+- them auto dien diem btvn ( kinda big update ) ( test func is ok rn)
+-test gop chay song song nhieu lop vao 1 browser 
+- lag ux ui fix lag giao dien
+- them cai check double id ncl handle ID tot hon

@@ -1,52 +1,66 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait, Select
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import time
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+# Initialize the Chrome WebDriver
+driver = webdriver.Chrome(service=Service(), options=Options())
 
-url = 'http://quanly.bgo.edu.vn/class-attendances'
-chrome_options = Options()
-chrome_options.add_argument('--start-maximized')
-driver = webdriver.Chrome(options=chrome_options)
-driver.get(url)
 
-time.sleep(10)  
-driver.execute_script("document.body.style.zoom='67%'")
-time.sleep(5)  
+# Open the BGO website
+driver.get('http://quanly.bgo.edu.vn/')
 
-wait = WebDriverWait(driver, 20)
+# Wait for user input to proceed
+input("Press Enter after you have navigated to the 'Điểm danh' tab...")
 
 try:
-    # Use the original working XPath for search
-    find = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/bgo-root/div/div/bgo-main-layout/bgo-class-attendances/div/div[4]/bgo-grid/div/div[1]/div[6]/div/input")))
-    find.send_keys('053')
-    time.sleep(5)  # Wait for search results
+    # Wait for and click the thumbs up button
+    thumbs_up = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "bgo-grid-cell-icon i.far.fa-thumbs-up.text-success"))
+    )
+    thumbs_up.click()
+    print("Successfully clicked the thumbs up button!")
 
-    # First dropdown
-    select_1 = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/bgo-root/div/div/bgo-main-layout/bgo-class-attendances/div/div[4]/bgo-grid/div/div[2]/div/ag-grid-angular/div/div[1]/div/div[3]/div[2]/div/div/div[1]/div[3]/bgo-grid-dropdown/select/option[2]")))
-    select_1.click()
-    print('Xong 1')
-    time.sleep(5)
+    # Ask for the grade value
+    grade = input("Enter the grade value: ")
 
-    # Second dropdown
-    select_2 = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/bgo-root/div/div/bgo-main-layout/bgo-class-attendances/div/div[4]/bgo-grid/div/div[2]/div/ag-grid-angular/div/div[1]/div/div[3]/div[2]/div/div/div[1]/div[5]/bgo-grid-dropdown/select/option[2]")))
-    select_2.click()
-    print('Xong 2')
-    time.sleep(5)
+    # Wait for and find the grade input field
+    grade_input = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "input.form-control[formcontrolname='btvnGrade']"))
+    )
+    
+    # Clear existing value and enter new grade
+    grade_input.clear()
+    grade_input.send_keys(grade)
+    grade_input.send_keys(Keys.TAB)  # Tab out to trigger any validation
+    print(f"Successfully entered grade: {grade}")
 
-    # Third dropdown
-    select_3 = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/bgo-root/div/div/bgo-main-layout/bgo-class-attendances/div/div[4]/bgo-grid/div/div[2]/div/ag-grid-angular/div/div[1]/div/div[3]/div[2]/div/div/div[1]/div[3]/bgo-grid-dropdown/select/option[2]")))
-    select_3.click()
-    print('Xong 3')
-    time.sleep(5)
+    # Wait for and click the Save button
+    save_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "button.btn.btn-info[type='submit']"))
+    )
+    save_button.click()
+
+    print("Successfully clicked the Save button!")
+
+    # Wait for and accept the alert (if it appears) driver.switchTo().alert().accept(); driver.switchTo().alert().dismiss();
+    try:
+        alert = WebDriverWait(driver, 10).until(EC.alert_is_present())
+        alert_text = alert.text
+        print(f"Alert text: {alert_text}")
+        alert.accept() # Or alert.dismiss() if you need to cancel instead of accept
+        print("Successfully handled the alert!")
+    except Exception as alert_error:
+        print(f"No alert was present or error handling alert: {alert_error}")
+
 
 except Exception as e:
-    print(f"An error occurred: {str(e)}")
-    driver.save_screenshot("error_screenshot.png")
-    print("Screenshot saved as error_screenshot.png")
+    print(f"An error occurred: {e}")
 
-
-
+# Keep the browser open
+input("Press Enter to close the browser...")
+driver.quit()
