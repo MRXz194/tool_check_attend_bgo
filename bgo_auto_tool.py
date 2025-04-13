@@ -598,16 +598,6 @@ class StudentAttendanceChecker:
         paste_btn = ttk.Button(button_frame, text="Nạp từ clipboard", command=load_ids_from_clipboard, width=15)
         paste_btn.pack(side=tk.LEFT, padx=5)
         
-        # Override the process_all_classes to update all hidden entries first
-        original_process_all = self.process_all_classes
-        def wrapped_process_all():
-            for tab in self.class_tabs:
-                all_ids = list(tab['id_listbox'].get(0, tk.END))
-                tab['student_ids_entry'].delete(0, tk.END)
-                tab['student_ids_entry'].insert(0, ",".join(all_ids))
-            original_process_all()
-        self.process_all_classes = wrapped_process_all
-        
         # Status label
         status_label = ttk.Label(class_frame, text="")
         status_label.pack(pady=5)
@@ -757,12 +747,31 @@ class StudentAttendanceChecker:
             messagebox.showwarning("Cảnh báo", "Không có lớp nào để điểm danh!")
             return
             
+        # First update all hidden entries from listboxes
+        for tab in self.class_tabs:
+            all_ids = list(tab['id_listbox'].get(0, tk.END))
+            tab['student_ids_entry'].delete(0, tk.END)
+            tab['student_ids_entry'].insert(0, ",".join(all_ids))
+            
         all_failed_students = []
         
         # Validate all inputs first
         class_configs = []
         for tab in self.class_tabs:
             student_ids = tab['student_ids_entry'].get().strip()
+            
+            # Check if the student_ids is empty but the listbox has values
+            if not student_ids and tab['id_listbox'].size() > 0:
+                all_ids = list(tab['id_listbox'].get(0, tk.END))
+                student_ids = ",".join(all_ids)
+                tab['student_ids_entry'].delete(0, tk.END)
+                tab['student_ids_entry'].insert(0, student_ids)
+                
+            # Double check if it's still empty
+            if not student_ids:
+                messagebox.showerror("Lỗi", f"Lỗi ở lớp {tab['id']}: Vui lòng nhập ít nhất một mã học sinh")
+                return
+                
             is_valid, result = self.validate_class_input(student_ids)
             if not is_valid:
                 messagebox.showerror("Lỗi", f"Lỗi ở lớp {tab['id']}: {result}")
