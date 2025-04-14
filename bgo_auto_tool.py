@@ -11,6 +11,9 @@ import threading
 import logging
 import re
 from concurrent.futures import ThreadPoolExecutor
+from PIL import Image, ImageTk
+import requests
+from io import BytesIO
 
 # Configure logging
 logging.basicConfig(
@@ -231,6 +234,10 @@ class StudentAttendanceChecker:
         process_all_btn = ttk.Button(control_panel, text="Điểm danh tất cả", command=self.process_all_classes)
         process_all_btn.pack(side=tk.LEFT, padx=5)
         
+        # About button in top right
+        about_btn = ttk.Button(control_panel, text="About", command=self.show_about)
+        about_btn.pack(side=tk.RIGHT, padx=5)
+        
         # Notebook for tabs
         self.notebook = ttk.Notebook(main_container)
         self.notebook.pack(fill=tk.BOTH, expand=True)
@@ -244,6 +251,16 @@ class StudentAttendanceChecker:
         self.add_class_tab()
         
         self.root.after(2000, lambda: self.root.attributes('-topmost', False))
+
+    def show_about(self):
+        about_text = """BGO Auto Tool
+Version 1.0
+
+Author: M1xz0
+GitHub: https://github.com/MRXz194
+
+© 2025 All Rights Reserved"""
+        messagebox.showinfo("About", about_text)
 
     def create_class_tab(self, tab_id):
         class_frame = ttk.Frame(self.notebook, padding="10")
