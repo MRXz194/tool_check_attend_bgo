@@ -26,12 +26,13 @@ logging.basicConfig(
 )
 
 class ClassAttendanceWorker:
-    def __init__(self, student_ids, online_students, lesson_type):
+    def __init__(self, student_ids, online_students, lesson_type, auto_absent=False):
         self.driver = None
         self.wait = None
         self.student_ids = student_ids
         self.online_students = online_students
         self.lesson_type = lesson_type
+        self.auto_absent = auto_absent
         self.failed_students = []
         
     def initialize_browser(self):
@@ -43,7 +44,7 @@ class ClassAttendanceWorker:
                 chrome_options.add_argument('--log-level=3')
                 self.driver = webdriver.Chrome(options=chrome_options)
                 self.wait = WebDriverWait(self.driver, 20)
-                self.driver.get('http://quanly.bgo.edu.vn/')
+                self.driver.get('http://quanly.bgomath.com/')
                 self.driver.execute_script("document.body.style.zoom='67%'")
                 logging.info("Browser initialized successfully")
                 
@@ -67,7 +68,7 @@ class ClassAttendanceWorker:
                 current_url = self.driver.current_url
                 if "class-attendances" not in current_url:
                     logging.info("Browser not on attendance page, redirecting...")
-                    self.driver.get('http://quanly.bgo.edu.vn/')
+                    self.driver.get('http://quanly.bgomath.com/')
                     # Add refresh detection again after navigation
                     self.setup_refresh_detection()
             except:
@@ -178,6 +179,196 @@ class ClassAttendanceWorker:
         except Exception as e:
             return (student_id, str(e))
 
+    def mark_remaining_absent(self):
+        try:
+            print("\n[INFO] Đang bắt đầu điểm danh vắng cho các học sinh còn lại...")
+            logging.info("Starting to mark remaining students as absent with permission")
+            self.check_for_refresh()
+            
+            # Clear search input to show all students
+            find = self.wait.until(EC.presence_of_element_located((
+                By.XPATH, '/html/body/bgo-root/div/div/bgo-main-layout/bgo-class-attendances/div/div[4]/bgo-grid/div/div[1]/div[6]/div/input'
+            )))
+            
+            # Aggressive and robust clear using JavaScript events
+            try:
+                self.driver.execute_script("arguments[0].value = '';", find)
+                self.driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", find)
+                self.driver.execute_script("arguments[0].dispatchEvent(new Event('change', { bubbles: true }));", find)
+                find.click()
+                from selenium.webdriver.common.keys import Keys
+                find.send_keys(Keys.CONTROL, 'a')
+                find.send_keys(Keys.BACKSPACE)
+                find.send_keys(Keys.ENTER)
+            except Exception as e:
+                logging.warning(f"JS clear failed, falling back: {e}")
+                find.clear()
+            
+            # Wait for table to reload all students - check for more than 1 row
+            max_wait = 5
+            arrival_status_divs = []
+            for _ in range(max_wait * 2):
+                arrival_status_divs = self.driver.find_elements(By.XPATH, "//div[@col-id='arrivalStatus']")
+                if len(arrival_status_divs) > 2: # At least header + more than 1 student
+                    break
+                time.sleep(0.5)
+                
+            total_rows = len(arrival_status_divs) - 1
+            if total_rows <= 0:
+                print("[WARNING] Chỉ tìm thấy 1 dòng (vẫn đang lọc?). Đang thử nạp lại một lần nữa...")
+                # One last attempt to clear
+                self.driver.execute_script("arguments[0].value = '';", find)
+                self.driver.execute_script("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", find)
+                time.sleep(2)
+                arrival_status_divs = self.driver.find_elements(By.XPATH, "//div[@col-id='arrivalStatus']")
+                total_rows = len(arrival_status_divs) - 1
+            
+            if total_rows <= 0:
+                print("[WARNING] Không tìm thấy học sinh nào khác trong bảng. Có thể lớp này chỉ có ít học sinh hoặc lọc chưa xoá.")
+                logging.info("No rows found for marking absent after clearing search")
+                return
+                
+            total_marked_absent = 0
+            page_num = 1
+            
+            while True:
+                total_rows = len(self.driver.find_elements(By.XPATH, "//div[@col-id='arrivalStatus']")) - 1
+                if total_rows <= 0:
+                    break
+                    
+                print(f"[INFO] Đang xử lý trang {page_num}... Tìm thấy {total_rows} dòng.")
+                logging.info(f"Processing page {page_num} with {total_rows} rows")
+                
+                for i in range(1, total_rows + 1):
+                    retry_count = 0
+                    while retry_count < 3:
+                        try:
+                            # Re-fetch elements every iteration to avoid Stale Element Reference
+                            current_divs = self.driver.find_elements(By.XPATH, "//div[@col-id='arrivalStatus']")
+                            if i >= len(current_divs):
+                                break
+                            arrival_status_div = current_divs[i]
+                            
+                            # 1. Look at 'arrivalStatus' (Đi học) to see if they are present
+                            try:
+                                arr_select_elem = arrival_status_div.find_element(By.TAG_NAME, "select")
+                                arr_text = self.driver.execute_script("return arguments[0].options[arguments[0].selectedIndex].text", arr_select_elem)
+                                arr_val = arr_select_elem.get_attribute("value")
+                            except:
+                                arr_text = ""
+                                arr_val = ""
+                                
+                            # Nếu đã 'Đi đúng giờ' (ON_TIME) hoặc có ghi nhận đi học, thì bỏ qua
+                            if arr_val == "ON_TIME" or "đúng giờ" in arr_text.lower() or "muộn" in arr_text.lower() or arr_val == "1":
+                                break
+                                
+                            # 2. Get row-index to find the corresponding 'Nghỉ học' column
+                            row_element = arrival_status_div.find_element(By.XPATH, "./ancestor::div[@role='row']")
+                            row_index = row_element.get_attribute("row-index")
+                            
+                            # 3. Find the 'Nghỉ học' select in the same row-index
+                            try:
+                                leave_select = self.driver.find_element(By.XPATH, f"//div[@role='row' and @row-index='{row_index}']//select[.//option[contains(text(), 'phép') or contains(text(), 'Phép')]]")
+                            except Exception as e:
+                                break # Couldn't find the 'Nghỉ học' dropdown for this row
+                                
+                            # 4. Check if it's already marked as 'Có phép'
+                            try:
+                                leave_text = self.driver.execute_script("return arguments[0].options[arguments[0].selectedIndex].text", leave_select)
+                                if "phép" in leave_text.lower():
+                                    break # Already marked
+                            except:
+                                pass
+                                
+                            # 5. Click the 'Có phép' option
+                            self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", leave_select)
+                            time.sleep(0.2)
+                            
+                            leave_select = self.driver.find_element(By.XPATH, f"//div[@role='row' and @row-index='{row_index}']//select[.//option[contains(text(), 'phép') or contains(text(), 'Phép')]]")
+                            options = leave_select.find_elements(By.TAG_NAME, "option")
+                            
+                            for opt in options:
+                                if "phép" in opt.text.lower() or opt.get_attribute("value") == "ABSENT_WITH_PERMISSION" or opt.get_attribute("value") == "2":
+                                    try:
+                                        opt.click()
+                                    except:
+                                        self.driver.execute_script("arguments[0].click();", opt)
+                                    total_marked_absent += 1
+                                    if total_marked_absent % 5 == 0:
+                                        print(f"  - Đang xử lý... Đã đánh vắng {total_marked_absent} em")
+                                    time.sleep(0.2)
+                                    break
+                                    
+                            # 6. Mark "Không nộp vở ghi" if not in "review" (Chữa đề) mode
+                            if self.lesson_type != "review":
+                                for vg_retry in range(3):
+                                    try:
+                                        notebook_select = self.driver.find_element(By.XPATH, f"//div[@role='row' and @row-index='{row_index}']//div[@col-id='10']//select")
+                                        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", notebook_select)
+                                        time.sleep(0.2)
+                                        
+                                        # Refetch after scroll to avoid stale element reference!
+                                        notebook_select = self.driver.find_element(By.XPATH, f"//div[@role='row' and @row-index='{row_index}']//div[@col-id='10']//select")
+                                        nb_options = notebook_select.find_elements(By.TAG_NAME, "option")
+                                        clicked_nb = False
+                                        for nb_opt in nb_options:
+                                            text_lower = nb_opt.text.lower()
+                                            if "không nộp" in text_lower or "chưa nộp" in text_lower:
+                                                try:
+                                                    nb_opt.click()
+                                                except:
+                                                    self.driver.execute_script("arguments[0].click();", nb_opt)
+                                                clicked_nb = True
+                                                break
+                                        
+                                        # Fallback value checking if text matching failed, you might need to adjust value
+                                        if not clicked_nb:
+                                            for nb_opt in nb_options:
+                                                if nb_opt.get_attribute("value") == "NOT_SUBMITTED" or nb_opt.get_attribute("value") == "3":
+                                                    self.driver.execute_script("arguments[0].click();", nb_opt)
+                                                    break
+                                        
+                                        # Success, break out of retry loop
+                                        break
+                                    except Exception as e:
+                                        if "stale" in str(e).lower() and vg_retry < 2:
+                                            time.sleep(0.5)
+                                            continue
+                                        logging.warning(f"Could not process Vo Ghi for row {i}: {e}")
+                                        break
+                            
+                            break
+                                    
+                        except Exception as e:
+                            if "stale" in str(e).lower() and retry_count < 2:
+                                retry_count += 1
+                                time.sleep(0.5)
+                                continue
+                            logging.warning(f"Failed to process row {i} for absent marking: {e}")
+                            break
+                
+                # Check for next page
+                try:
+                    next_btn = self.driver.find_element(By.XPATH, "/html/body/bgo-root/div/div/bgo-main-layout/bgo-class-attendances/div/div[4]/bgo-grid/div/div[2]/div/ag-grid-angular/div/div[2]/span[2]/button[3]")
+                    if next_btn.get_attribute("disabled"):
+                        break # Last page
+                    
+                    print(f"  - Chuyển sang trang {page_num + 1}...")
+                    next_btn.click()
+                    time.sleep(2) # Wait for page to load
+                    page_num += 1
+                except Exception as e:
+                    logging.info("No next page button found or end of pages")
+                    break
+            
+            print(f"[SUCCESS] Xong toàn bộ! Đã đánh vắng có phép cho tổng cộng {total_marked_absent} học sinh.")
+            logging.info(f"Successfully marked {total_marked_absent} students absent across {page_num} pages")
+                    
+        except Exception as e:
+            print(f"[ERROR] Lỗi khi đánh vắng HS còn lại: {str(e)}")
+            logging.error(f"Error in mark_remaining_absent: {str(e)}")
+            self.failed_students.append((None, f"Lỗi đánh vắng: {str(e)}"))
+
     def process_class(self):
         should_quit_browser = False
         if not self.driver:
@@ -193,6 +384,9 @@ class ClassAttendanceWorker:
                 
                 # Yield progress after each student for UI updates
                 yield i + 1, len(self.student_ids)
+
+            if self.auto_absent:
+                self.mark_remaining_absent()
                     
         finally:
             if should_quit_browser and self.driver:
@@ -309,6 +503,10 @@ GitHub: https://github.com/MRXz194
         ttk.Radiobutton(lesson_frame, text="Lý thuyết", variable=lesson_type, value="theory").pack(side=tk.LEFT, padx=5)
         ttk.Radiobutton(lesson_frame, text="Luyện đề", variable=lesson_type, value="practice").pack(side=tk.LEFT, padx=5)
         ttk.Radiobutton(lesson_frame, text="Chữa đề", variable=lesson_type, value="review").pack(side=tk.LEFT, padx=5)
+        
+        # Auto absent option
+        auto_absent_var = tk.BooleanVar(value=False)
+        ttk.Checkbutton(lesson_frame, text="Tự động vắng có phép HS còn lại", variable=auto_absent_var).pack(side=tk.LEFT, padx=15)
         
         # Online students entry
         online_frame = ttk.LabelFrame(class_frame, text="Học sinh học online", padding="5")
@@ -623,6 +821,7 @@ GitHub: https://github.com/MRXz194
             'id': tab_id,
             'frame': class_frame,
             'lesson_type': lesson_type,
+            'auto_absent_var': auto_absent_var,
             'online_ids_entry': online_ids_entry,
             'student_ids_entry': student_ids_entry,
             'id_listbox': id_listbox,
@@ -813,6 +1012,7 @@ GitHub: https://github.com/MRXz194
                 'student_ids': result,
                 'online_students': online_students,
                 'lesson_type': tab['lesson_type'].get(),
+                'auto_absent': tab['auto_absent_var'].get(),
                 'status_label': tab['status_label'],
                 'browser': browser,
                 'tab_id': tab['id']
@@ -893,7 +1093,8 @@ GitHub: https://github.com/MRXz194
             worker = ClassAttendanceWorker(
                 config['student_ids'],
                 config['online_students'],
-                config['lesson_type']
+                config['lesson_type'],
+                config['auto_absent']
             )
             
             # Set existing browser if available
@@ -974,11 +1175,11 @@ GitHub: https://github.com/MRXz194
         online_ids = tab['online_ids_entry'].get().strip()
         online_students = set(id.strip() for id in online_ids.split(',') if id.strip())
 
-        # Create worker and set its browser if we have one
         worker = ClassAttendanceWorker(
             result,
             online_students,
-            tab['lesson_type'].get()
+            tab['lesson_type'].get(),
+            tab['auto_absent_var'].get()
         )
 
         # Use existing browser if available
@@ -1101,7 +1302,7 @@ GitHub: https://github.com/MRXz194
                 chrome_options.add_argument('--log-level=3')
                 driver = webdriver.Chrome(options=chrome_options)
                 self.tab_browsers[tab_id] = driver
-                driver.get('http://quanly.bgo.edu.vn/')
+                driver.get('http://quanly.bgomath.com/')
                 driver.execute_script("document.body.style.zoom='67%'")
                 logging.info(f"Browser opened for class tab {tab_id}")
             except Exception as e:

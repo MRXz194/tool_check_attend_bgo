@@ -1,0 +1,762 @@
+2026-04-05 00:50:15,442 - INFO - Browser opened for class tab 1
+2026-04-05 00:52:33,566 - INFO - Processing student: 508
+2026-04-05 00:52:34,741 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 00:52:35,774 - WARNING - Failed to process row for absent marking: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[@col-id='arrivalStatus']"}
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65cf06b9e]
+	chromedriver!(No symbol) [0x7ff65cf06eac]
+	chromedriver!(No symbol) [0x7ff65cefab5c]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 00:52:35,804 - WARNING - Failed to process row for absent marking: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[@col-id='arrivalStatus']"}
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65cf06b9e]
+	chromedriver!(No symbol) [0x7ff65cf06eac]
+	chromedriver!(No symbol) [0x7ff65cefab5c]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 00:54:25,100 - INFO - Browser opened for class tab 1
+2026-04-05 00:54:30,336 - INFO - Shutting down application
+2026-04-05 00:54:45,294 - INFO - Browser opened for class tab 1
+2026-04-05 01:02:57,773 - INFO - Processing student: 0083
+2026-04-05 01:02:58,924 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:05:06,590 - INFO - Browser opened for class tab 1
+2026-04-05 01:06:35,504 - INFO - Browser opened for class tab 1
+2026-04-05 01:07:38,647 - INFO - Processing student: 0083
+2026-04-05 01:07:39,828 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:07:41,406 - INFO - Found 10 rows to check
+2026-04-05 01:07:41,607 - INFO - Successfully marked 0 students absent
+2026-04-05 01:09:26,051 - INFO - Browser opened for class tab 1
+2026-04-05 01:11:10,098 - INFO - Processing student: 0083
+2026-04-05 01:11:11,242 - INFO - Processing student: 165
+2026-04-05 01:11:16,602 - INFO - Processing student: 0083
+2026-04-05 01:11:17,754 - INFO - Processing student: 165
+2026-04-05 01:11:18,885 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:11:20,979 - INFO - Found 1 rows to check
+2026-04-05 01:11:21,017 - INFO - Successfully marked 0 students absent
+2026-04-05 01:14:00,090 - INFO - Browser opened for class tab 1
+2026-04-05 01:15:22,844 - INFO - Processing student: 0083
+2026-04-05 01:15:23,986 - INFO - Processing student: 165
+2026-04-05 01:15:25,131 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:15:25,256 - INFO - Found 10 rows to check
+2026-04-05 01:15:25,338 - INFO - Successfully marked 0 students absent
+2026-04-05 01:18:16,110 - INFO - Browser opened for class tab 1
+2026-04-05 01:19:27,968 - INFO - Processing student: 0083
+2026-04-05 01:19:29,124 - INFO - Processing student: 165
+2026-04-05 01:19:30,255 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:19:30,404 - INFO - Found 10 rows to check
+2026-04-05 01:19:30,977 - WARNING - Failed to process row 2 for absent marking: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8f5f]
+	chromedriver!(No symbol) [0x7ff65cf54f41]
+	chromedriver!(No symbol) [0x7ff65cf2ff8a]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:19:30,989 - WARNING - Failed to process row 3 for absent marking: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf0631e]
+	chromedriver!(No symbol) [0x7ff65cf06eac]
+	chromedriver!(No symbol) [0x7ff65cefab5c]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:19:31,002 - WARNING - Failed to process row 4 for absent marking: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf0631e]
+	chromedriver!(No symbol) [0x7ff65cf06eac]
+	chromedriver!(No symbol) [0x7ff65cefab5c]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:19:31,012 - WARNING - Failed to process row 5 for absent marking: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf0631e]
+	chromedriver!(No symbol) [0x7ff65cf06eac]
+	chromedriver!(No symbol) [0x7ff65cefab5c]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:19:31,022 - WARNING - Failed to process row 6 for absent marking: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf0631e]
+	chromedriver!(No symbol) [0x7ff65cf06eac]
+	chromedriver!(No symbol) [0x7ff65cefab5c]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:19:31,032 - WARNING - Failed to process row 7 for absent marking: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf0631e]
+	chromedriver!(No symbol) [0x7ff65cf06eac]
+	chromedriver!(No symbol) [0x7ff65cefab5c]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:19:31,043 - WARNING - Failed to process row 8 for absent marking: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf0631e]
+	chromedriver!(No symbol) [0x7ff65cf06eac]
+	chromedriver!(No symbol) [0x7ff65cefab5c]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:19:31,052 - WARNING - Failed to process row 9 for absent marking: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf0631e]
+	chromedriver!(No symbol) [0x7ff65cf06eac]
+	chromedriver!(No symbol) [0x7ff65cefab5c]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:19:31,053 - INFO - Successfully marked 1 students absent
+2026-04-05 01:21:25,786 - INFO - Browser opened for class tab 1
+2026-04-05 01:27:18,480 - INFO - Processing student: 0083
+2026-04-05 01:27:19,627 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:27:19,743 - INFO - Found 10 rows to check
+2026-04-05 01:27:21,909 - WARNING - Failed to process row 9 for absent marking: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8f5f]
+	chromedriver!(No symbol) [0x7ff65cf54f41]
+	chromedriver!(No symbol) [0x7ff65cf2ff8a]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:27:22,270 - INFO - Successfully marked 6 students absent
+2026-04-05 01:31:19,985 - INFO - Browser opened for class tab 1
+2026-04-05 01:34:25,816 - INFO - Processing student: 0083
+2026-04-05 01:34:27,009 - INFO - Processing student: 165
+2026-04-05 01:34:28,141 - INFO - Processing student: 347
+2026-04-05 01:34:29,272 - INFO - Processing student: 493
+2026-04-05 01:34:30,419 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:34:31,584 - INFO - Processing page 1 with 10 rows
+2026-04-05 01:34:38,232 - INFO - Processing page 2 with 10 rows
+2026-04-05 01:34:44,591 - INFO - Processing page 3 with 10 rows
+2026-04-05 01:34:51,684 - INFO - Processing page 4 with 10 rows
+2026-04-05 01:34:58,421 - INFO - Processing page 5 with 10 rows
+2026-04-05 01:35:03,837 - INFO - Successfully marked 46 students absent across 5 pages
+2026-04-05 01:38:54,674 - INFO - Shutting down application
+2026-04-05 01:41:11,619 - INFO - Browser opened for class tab 1
+2026-04-05 01:42:40,419 - INFO - Processing student: 164
+2026-04-05 01:42:42,657 - INFO - Processing student: 279
+2026-04-05 01:42:44,843 - INFO - Processing student: 401
+2026-04-05 01:42:47,013 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:42:47,399 - INFO - Processing page 1 with 10 rows
+2026-04-05 01:42:54,386 - INFO - Processing page 2 with 10 rows
+2026-04-05 01:43:02,613 - INFO - Processing page 3 with 10 rows
+2026-04-05 01:43:02,851 - WARNING - Failed to process row 1 for absent marking: 'NoneType' object has no attribute 'find_elements'
+2026-04-05 01:43:02,852 - WARNING - Failed to process row 2 for absent marking: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.178)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ce84322]
+	chromedriver!(No symbol) [0x7ff65cf36e86]
+	chromedriver!(No symbol) [0x7ff65cf53482]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:43:02,853 - WARNING - Failed to process row 3 for absent marking: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.178)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ce84322]
+	chromedriver!(No symbol) [0x7ff65cf36e86]
+	chromedriver!(No symbol) [0x7ff65cf53482]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:43:02,855 - WARNING - Failed to process row 4 for absent marking: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.178)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ce84322]
+	chromedriver!(No symbol) [0x7ff65cf36e86]
+	chromedriver!(No symbol) [0x7ff65cf53482]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:43:02,856 - WARNING - Failed to process row 5 for absent marking: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.178)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ce84322]
+	chromedriver!(No symbol) [0x7ff65cf36e86]
+	chromedriver!(No symbol) [0x7ff65cf53482]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:43:02,858 - WARNING - Failed to process row 6 for absent marking: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.178)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ce84322]
+	chromedriver!(No symbol) [0x7ff65cf36e86]
+	chromedriver!(No symbol) [0x7ff65cf53482]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:43:02,859 - WARNING - Failed to process row 7 for absent marking: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.178)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ce84322]
+	chromedriver!(No symbol) [0x7ff65cf36e86]
+	chromedriver!(No symbol) [0x7ff65cf53482]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:43:02,861 - WARNING - Failed to process row 8 for absent marking: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.178)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ce84322]
+	chromedriver!(No symbol) [0x7ff65cf36e86]
+	chromedriver!(No symbol) [0x7ff65cf53482]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:43:02,863 - WARNING - Failed to process row 9 for absent marking: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.178)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ce84322]
+	chromedriver!(No symbol) [0x7ff65cf36e86]
+	chromedriver!(No symbol) [0x7ff65cf53482]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:43:02,865 - WARNING - Failed to process row 10 for absent marking: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.178)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ce84322]
+	chromedriver!(No symbol) [0x7ff65cf36e86]
+	chromedriver!(No symbol) [0x7ff65cf53482]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:43:02,867 - INFO - No next page button found or end of pages
+2026-04-05 01:43:02,867 - INFO - Successfully marked 17 students absent across 3 pages
+2026-04-05 01:43:05,767 - INFO - Shutting down application
+2026-04-05 01:45:37,493 - INFO - Browser opened for class tab 1
+2026-04-05 01:46:58,267 - INFO - Processing student: 164
+2026-04-05 01:47:00,448 - INFO - Processing student: 279
+2026-04-05 01:47:02,603 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:47:02,719 - INFO - Processing page 1 with 10 rows
+2026-04-05 01:47:05,032 - INFO - Processing page 2 with 10 rows
+2026-04-05 01:47:07,339 - INFO - Processing page 3 with 10 rows
+2026-04-05 01:47:07,981 - WARNING - Could not process Vo Ghi for row 1: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf01ddc]
+	chromedriver!(No symbol) [0x7ff65cf2ff8a]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:47:09,885 - WARNING - Could not process Vo Ghi for row 4: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf01ddc]
+	chromedriver!(No symbol) [0x7ff65cf2ff8a]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:47:16,560 - INFO - Processing page 4 with 10 rows
+2026-04-05 01:47:22,713 - WARNING - Could not process Vo Ghi for row 7: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf01ddc]
+	chromedriver!(No symbol) [0x7ff65cf2ff8a]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:47:24,106 - WARNING - Could not process Vo Ghi for row 9: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf01ddc]
+	chromedriver!(No symbol) [0x7ff65cf2ff8a]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:47:26,905 - INFO - Processing page 5 with 10 rows
+2026-04-05 01:47:27,526 - WARNING - Could not process Vo Ghi for row 1: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf01ddc]
+	chromedriver!(No symbol) [0x7ff65cf2ff8a]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:47:28,819 - WARNING - Could not process Vo Ghi for row 3: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf01ddc]
+	chromedriver!(No symbol) [0x7ff65cf2ff8a]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:47:33,424 - WARNING - Could not process Vo Ghi for row 9: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=146.0.7680.178); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65d4229c5+2ed785]
+	chromedriver!GetHandleVerifier [0x7ff65d14a0d0+14e90]
+	chromedriver!(No symbol) [0x7ff65ceadb2d]
+	chromedriver!(No symbol) [0x7ff65ceb5ab1]
+	chromedriver!(No symbol) [0x7ff65ceb8bc5]
+	chromedriver!(No symbol) [0x7ff65ceb8c8f]
+	chromedriver!(No symbol) [0x7ff65cf0631e]
+	chromedriver!(No symbol) [0x7ff65cf06eac]
+	chromedriver!(No symbol) [0x7ff65cefb06c]
+	chromedriver!(No symbol) [0x7ff65cefaa06]
+	chromedriver!(No symbol) [0x7ff65cf53b9b]
+	chromedriver!(No symbol) [0x7ff65cef9298]
+	chromedriver!(No symbol) [0x7ff65cefa183]
+	chromedriver!GetHandleVerifier [0x7ff65d44de0d+318bcd]
+	chromedriver!GetHandleVerifier [0x7ff65d448588+313348]
+	chromedriver!GetHandleVerifier [0x7ff65d469d7a+334b3a]
+	chromedriver!GetHandleVerifier [0x7ff65d166785+31545]
+	chromedriver!GetHandleVerifier [0x7ff65d16facc+3a88c]
+	chromedriver!GetHandleVerifier [0x7ff65d153634+1e3f4]
+	chromedriver!GetHandleVerifier [0x7ff65d1537e6+1e5a6]
+	chromedriver!GetHandleVerifier [0x7ff65d137e37+2bf7]
+	KERNEL32!BaseThreadInitThunk [0x7ffa97bc7604+14]
+	ntdll!RtlUserThreadStart [0x7ffa982826a1+21]
+
+2026-04-05 01:47:34,088 - INFO - Successfully marked 30 students absent across 5 pages
+2026-04-05 01:48:57,231 - INFO - Browser opened for class tab 1
+2026-04-05 01:50:15,509 - INFO - Processing student: 553
+2026-04-05 01:50:17,722 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:50:17,863 - INFO - Processing page 1 with 10 rows
+2026-04-05 01:50:20,204 - INFO - Processing page 2 with 10 rows
+2026-04-05 01:50:22,500 - INFO - Processing page 3 with 10 rows
+2026-04-05 01:50:24,855 - INFO - Processing page 4 with 10 rows
+2026-04-05 01:50:27,176 - INFO - Processing page 5 with 10 rows
+2026-04-05 01:50:34,438 - INFO - Successfully marked 9 students absent across 5 pages
+2026-04-05 01:52:29,216 - INFO - Processing student: 0083
+2026-04-05 01:52:30,363 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 01:52:30,519 - INFO - Processing page 1 with 10 rows
+2026-04-05 01:52:37,414 - INFO - Processing page 2 with 10 rows
