@@ -33,6 +33,7 @@ class ClassAttendanceWorker:
         self.online_students = online_students
         self.lesson_type = lesson_type
         self.auto_absent = auto_absent
+        self.absent_student_ids_list = []
         self.failed_students = []
         
     def initialize_browser(self):
@@ -284,6 +285,28 @@ class ClassAttendanceWorker:
                             self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", leave_select)
                             time.sleep(0.2)
                             
+                            # ===== LẤY MÃ HỌC SINH TRƯỚC KHI CLICK (để chống nháy màn hình) =====
+                            if self.lesson_type == "review":
+                                st_code = None
+                                for retry_id in range(3):
+                                    try:
+                                        # Tìm Mã học sinh nằm ở cùng row-index
+                                        p_elems = self.driver.find_elements(By.XPATH, f"//div[@role='row' and @row-index='{row_index}']//bgo-grid-text/p")
+                                        if p_elems:
+                                            st_code = p_elems[0].text.strip()
+                                            if st_code:
+                                                break # Thành công thoát vòng lặp retry
+                                    except:
+                                        time.sleep(0.2)
+                                        
+                                if st_code:
+                                    self.absent_student_ids_list.append(st_code)
+                                else:
+                                    msg = f"Dòng {row_index} - Không lấy được Mã HS"
+                                    logging.warning(msg)
+                                    self.failed_students.append((None, msg))
+                            # ====================================================================
+
                             leave_select = self.driver.find_element(By.XPATH, f"//div[@role='row' and @row-index='{row_index}']//select[.//option[contains(text(), 'phép') or contains(text(), 'Phép')]]")
                             options = leave_select.find_elements(By.TAG_NAME, "option")
                             
@@ -344,7 +367,9 @@ class ClassAttendanceWorker:
                                 retry_count += 1
                                 time.sleep(0.5)
                                 continue
-                            logging.warning(f"Failed to process row {i} for absent marking: {e}")
+                            err_msg = f"Dòng {i} - Lỗi đánh vắng: {str(e)[:50]}"
+                            logging.warning(err_msg)
+                            self.failed_students.append((None, err_msg))
                             break
                 
                 # Check for next page
@@ -363,6 +388,15 @@ class ClassAttendanceWorker:
             
             print(f"[SUCCESS] Xong toàn bộ! Đã đánh vắng có phép cho tổng cộng {total_marked_absent} học sinh.")
             logging.info(f"Successfully marked {total_marked_absent} students absent across {page_num} pages")
+            
+            if self.absent_student_ids_list:
+                try:
+                    with open("danh_sach_vang_zalo.txt", "a", encoding="utf-8") as f:
+                        for sid in self.absent_student_ids_list:
+                            f.write(f"{sid}\n")
+                    print(f"[ZALO TÍCH HỢP] Đã trích xuất {len(self.absent_student_ids_list)} mã vắng mặt vào file 'danh_sach_vang_zalo.txt' cùng thư mục Tool!")
+                except Exception as file_ex:
+                    print(f"Lỗi khi lưu danh sách vắng: {file_ex}")
                     
         except Exception as e:
             print(f"[ERROR] Lỗi khi đánh vắng HS còn lại: {str(e)}")
@@ -1071,6 +1105,13 @@ GitHub: https://github.com/MRXz194
         total_classes = len(class_configs)
         overall_progress['maximum'] = total_classes
         
+        # Clear previous Zalo file at start of new run
+        try:
+            with open("danh_sach_vang_zalo.txt", "w", encoding="utf-8") as f:
+                f.write("")
+        except:
+            pass
+        
         def process_class_by_index(idx):
             if idx >= len(class_configs):
                 # All classes have been processed
@@ -1194,6 +1235,13 @@ GitHub: https://github.com/MRXz194
             except:
                 # Browser was closed by user
                 self.tab_browsers.pop(tab_id)
+
+        # Clear previous Zalo file at start of new run
+        try:
+            with open("danh_sach_vang_zalo.txt", "w", encoding="utf-8") as f:
+                f.write("")
+        except:
+            pass
 
         # Create progress window
         progress_window = tk.Toplevel(self.root)

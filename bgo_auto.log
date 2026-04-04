@@ -760,3 +760,14 @@ Stacktrace:
 2026-04-05 01:52:30,363 - INFO - Starting to mark remaining students as absent with permission
 2026-04-05 01:52:30,519 - INFO - Processing page 1 with 10 rows
 2026-04-05 01:52:37,414 - INFO - Processing page 2 with 10 rows
+2026-04-05 02:20:25,467 - INFO - Browser opened for class tab 1
+2026-04-05 02:21:29,435 - INFO - Processing student: 0083
+2026-04-05 02:21:30,579 - INFO - Processing student: 164
+2026-04-05 02:21:31,730 - INFO - Starting to mark remaining students as absent with permission
+2026-04-05 02:21:31,906 - INFO - Processing page 1 with 10 rows
+2026-04-05 02:21:38,579 - INFO - Processing page 2 with 10 rows
+2026-04-05 02:21:45,659 - INFO - Processing page 3 with 10 rows
+2026-04-05 02:21:53,603 - INFO - Processing page 4 with 10 rows
+2026-04-05 02:22:01,607 - INFO - Processing page 5 with 10 rows
+2026-04-05 02:22:06,508 - INFO - Successfully marked 48 students absent across 5 pages
+2026-04-05 02:33:26,088 - INFO - Shutting down application
