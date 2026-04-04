@@ -1,1 +1,6 @@
-selenium==4.16.0
+selenium
+Pillow
+requests
+pyautogui
+pyperclip
+pyinstaller
