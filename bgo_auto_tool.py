@@ -1354,7 +1354,9 @@ GitHub: https://github.com/MRXz194
                 driver.execute_script("document.body.style.zoom='67%'")
                 logging.info(f"Browser opened for class tab {tab_id}")
             except Exception as e:
-                self.root.after(0, lambda: messagebox.showerror("Lỗi", f"Không thể mở trình duyệt: {str(e)}"))
+                # Capture 'e' dynamically to prevent scope issues in the lambda
+                error_msg = str(e)
+                self.root.after(0, lambda err=error_msg: messagebox.showerror("Lỗi", f"Không thể mở trình duyệt: {err}"))
 
         threading.Thread(target=open_browser_thread, daemon=True).start()
 
