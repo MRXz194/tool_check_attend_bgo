@@ -393,7 +393,8 @@ class ClassAttendanceWorker:
                 try:
                     with open("danh_sach_vang_zalo.txt", "a", encoding="utf-8") as f:
                         for sid in self.absent_student_ids_list:
-                            f.write(f"{sid}\n")
+                            clean_sid = sid.replace("-", "")
+                            f.write(f"{clean_sid}\n")
                     print(f"[ZALO TÍCH HỢP] Đã trích xuất {len(self.absent_student_ids_list)} mã vắng mặt vào file 'danh_sach_vang_zalo.txt' cùng thư mục Tool!")
                 except Exception as file_ex:
                     print(f"Lỗi khi lưu danh sách vắng: {file_ex}")

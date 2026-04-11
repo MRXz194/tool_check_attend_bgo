@@ -5,6 +5,16 @@ import pyperclip
 import time
 import threading
 import os
+import ctypes
+
+# Bật tính năng nhận diện DPI cao trên Windows (Fix lỗi window hoặc chữ bé xíu/nhòe)
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+except Exception:
+    try:
+        ctypes.windll.user32.SetProcessDPIAware()
+    except Exception:
+        pass
 
 ABSENT_LIST_FILE = "danh_sach_vang_zalo.txt"
 
@@ -12,14 +22,22 @@ class ZaloForwardAutomationTool:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("Zalo Auto Forward Mouse-Click by MRX :>")
-        self.root.geometry("450x650")
+        
+        # Tự động điều chỉnh kích thước theo màn hình
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        win_w = max(550, int(screen_width * 0.3))
+        win_h = max(750, int(screen_height * 0.7))
+        
+        self.root.geometry(f"{win_w}x{win_h}")
+        self.root.minsize(550, 750)
         self.root.configure(bg='#f0f0f0')
         
         # Always on top so it doesn't get hidden
         self.root.attributes('-topmost', True)
         
         # Center the window
-        self.center_window(450, 650)
+        self.center_window(win_w, win_h)
         
         self.running = False
         self.search_pos = None
@@ -51,21 +69,8 @@ class ZaloForwardAutomationTool:
         self.root.geometry(f'{width}x{height}+{x}+{y}')
 
     def create_widgets(self):
-        # Instructions
-        instruction_frame = tk.Frame(self.root, bg='#f0f0f0')
-        instruction_frame.pack(pady=10, padx=15, fill=tk.X)
-        
-        tk.Label(instruction_frame, text="HƯỚNG DẪN SỬ DỤNG (BẢN CHUỘT):", font=('Arial', 10, 'bold'), bg='#f0f0f0').pack(anchor='w')
-        instructions = (
-            "1. Lấy vị trí: Bấm lấy tọa độ Ô TÌM KIẾM rồi ĐỂ YÊN CHUỘT ở đó 3s.\n"
-            "2. Lấy vị trí: Bấm lấy tọa độ Ô TICK kết quả rồi ĐỂ YÊN CHUỘT 3s.\n"
-            "3. Dán danh sách Tên nhóm/người nhận vào ô bên dưới.\n"
-            "4. Mở cửa sổ Zalo Chia sẻ ra, rồi bấm Bắt Đầu Chạy."
-        )
-        tk.Label(instruction_frame, text=instructions, font=('Arial', 9), justify=tk.LEFT, bg='#f0f0f0').pack(anchor='w', pady=(5,0))
-
         # Coordinate config
-        coord_frame = tk.LabelFrame(self.root, text="Thiết lập vị trí chuột", bg='#f0f0f0', font=('Arial', 9, 'bold'))
+        coord_frame = tk.LabelFrame(self.root, text="Thiết lập vị trí chuột", bg='#f0f0f0', font=('Arial', 11, 'bold'))
         coord_frame.pack(pady=5, padx=15, fill=tk.X)
         
         self.btn_search_pos = tk.Button(coord_frame, text="1. Bấm để lấy vị trí Ô TÌM KIẾM (Chờ 3s)", command=lambda: self.get_pos('search'))
@@ -81,27 +86,33 @@ class ZaloForwardAutomationTool:
         self.lbl_tick_pos.pack(pady=2)
 
         # Text input for groups
-        tk.Label(self.root, text="Danh sách Tên (Mỗi dòng 1 tên):", font=('Arial', 9, 'bold'), bg='#f0f0f0').pack(anchor='w', padx=15, pady=(5, 0))
-        self.group_text = scrolledtext.ScrolledText(self.root, width=50, height=10, font=('Arial', 9))
-        self.group_text.pack(pady=2, padx=15)
+        group_label_frame = tk.Frame(self.root, bg='#f0f0f0')
+        group_label_frame.pack(fill=tk.X, padx=15, pady=(5, 0))
+        
+        tk.Label(group_label_frame, text="Danh sách Tên (Mỗi dòng 1 tên):", font=('Arial', 11, 'bold'), bg='#f0f0f0').pack(side=tk.LEFT)
+        self.btn_clear = tk.Button(group_label_frame, text="🗑 Xóa tất cả", font=('Arial', 10), command=lambda: self.group_text.delete("1.0", tk.END))
+        self.btn_clear.pack(side=tk.RIGHT)
+        
+        self.group_text = scrolledtext.ScrolledText(self.root, width=50, height=12, font=('Arial', 11))
+        self.group_text.pack(pady=2, padx=15, fill=tk.BOTH, expand=True)
         
         # Delay setting
         delay_frame = tk.Frame(self.root, bg='#f0f0f0')
         delay_frame.pack(pady=5, padx=15, fill=tk.X)
-        tk.Label(delay_frame, text="Thời gian chờ load kết quả (giây):", font=('Arial', 9), bg='#f0f0f0').pack(side=tk.LEFT)
+        tk.Label(delay_frame, text="Thời gian chờ load kết quả (giây):", font=('Arial', 11), bg='#f0f0f0').pack(side=tk.LEFT)
         self.delay_var = tk.StringVar(value="1.0")
-        tk.Entry(delay_frame, textvariable=self.delay_var, width=5).pack(side=tk.LEFT, padx=5)
+        tk.Entry(delay_frame, textvariable=self.delay_var, width=6, font=('Arial', 11)).pack(side=tk.LEFT, padx=5)
 
         # Status Label
-        self.status_label = tk.Label(self.root, text="Trạng thái: Sẵn sàng", font=('Arial', 10, 'bold'), fg='blue', bg='#f0f0f0')
+        self.status_label = tk.Label(self.root, text="Trạng thái: Sẵn sàng", font=('Arial', 12, 'bold'), fg='blue', bg='#f0f0f0')
         self.status_label.pack(pady=5)
 
         # Start Button
-        self.start_btn = tk.Button(self.root, text="🚀 BẮT ĐẦU CHẠY (Chờ 3s)", font=('Arial', 11, 'bold'), bg='#4CAF50', fg='white', command=self.start_automation_thread, height=2)
+        self.start_btn = tk.Button(self.root, text="🚀 BẮT ĐẦU CHẠY (Chờ 3s)", font=('Arial', 13, 'bold'), bg='#4CAF50', fg='white', command=self.start_automation_thread, height=2)
         self.start_btn.pack(pady=5, padx=15, fill=tk.X)
         
         # Stop Button
-        self.stop_btn = tk.Button(self.root, text="🛑 DỪNG KHẨN CẤP", font=('Arial', 10, 'bold'), bg='#f44336', fg='white', command=self.stop_automation, state=tk.DISABLED)
+        self.stop_btn = tk.Button(self.root, text="🛑 DỪNG KHẨN CẤP", font=('Arial', 12, 'bold'), bg='#f44336', fg='white', command=self.stop_automation, state=tk.DISABLED)
         self.stop_btn.pack(pady=5, padx=15, fill=tk.X)
 
     def get_pos(self, target):
@@ -129,7 +140,8 @@ class ZaloForwardAutomationTool:
             return
             
         groups = self.group_text.get("1.0", tk.END).strip().split('\n')
-        groups = [g.strip() for g in groups if g.strip()]
+        # Loại bỏ các khoảng trắng thừa và bỏ luôn dấu gạch ngang '-' trong mã số
+        groups = [g.replace("-", "").strip() for g in groups if g.strip()]
         
         if not groups:
             messagebox.showwarning("Cảnh báo", "Vui lòng nhập danh sách nhóm!")
