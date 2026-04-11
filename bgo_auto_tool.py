@@ -37,12 +37,15 @@ class ClassAttendanceWorker:
         self.failed_students = []
         
     def initialize_browser(self):
-        # Only initialize if we don't already have a browser
         if self.driver is None:
             try:
                 chrome_options = Options()
                 chrome_options.add_argument('--start-maximized')
                 chrome_options.add_argument('--log-level=3')
+                
+                # Lưu cache browser vào thư mục máy để load cực nhanh như trình duyệt thường
+                chrome_options.add_argument('user-data-dir=./chrome_profile_cache')
+                
                 self.driver = webdriver.Chrome(options=chrome_options)
                 self.wait = WebDriverWait(self.driver, 20)
                 self.driver.get('http://quanly.bgomath.com/')
